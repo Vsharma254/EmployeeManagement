@@ -1,0 +1,27 @@
+<md-card class="demo-card demo-basic">
+    <md-toolbar color="primary">Login</md-toolbar>
+    <md-card-content>
+        <div style="margin-left: 45%; margin-top: 10px;">
+            <table style="width: 100%" cellspacing="0">
+                <tr>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="User Name" [(ngModel)]="user.userName">
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container>
+                            <input type="password" mdInput placeholder="Password" [(ngModel)]="user.password">
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+            <br />
+            <button id="userLoginButton" (click)="loginUser()" md-raised-button color="accent">  Login </button>
+        </div>
+    </md-card-content>
+</md-card>
