@@ -14,6 +14,8 @@ import { CountryComponent } from './country/country.component';
 import { StateComponent } from './state/state.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AddEmployeeComponent } from './employee/addEmployee.component';
+import { DepratmentSelectListComponent } from './plugin-component/department-select-component';
 import { HeaderComponent } from './layout/header.component';
 import { FooterComponent } from './layout/footer.component';
 import { NavbarComponent } from './layout/navbar.component';
@@ -22,6 +24,7 @@ import { CanActiveGuardForRoute } from './guards/canActiveGuard';
 import { UserService } from './shared/service/user.service';
 import { MaterialModule } from '@angular/material';
 import { MdListModule } from '@angular2-material/list';
+
 import 'hammerjs';
 import {
   LocationStrategy,
@@ -34,8 +37,9 @@ const appRoutes: Routes = [{
     { path: '', component: NavbarComponent, outlet: 'navbar' },
 
     { path: 'country', component: CountryComponent, canActivate: [CanActiveGuardForRoute] },
-    { path: 'state', component: StateComponent, canActivate: [CanActiveGuardForRoute]  },
-    { path: 'department', component: DeparmentComponent, canActivate: [CanActiveGuardForRoute] }
+    { path: 'state', component: StateComponent, canActivate: [CanActiveGuardForRoute] },
+    { path: 'department', component: DeparmentComponent, canActivate: [CanActiveGuardForRoute] },
+    { path: 'addemployee', component: AddEmployeeComponent, canActivate: [CanActiveGuardForRoute] }
   ]
 }, { path: 'login', component: LoginComponent },
 { path: 'register', component: RegistrationComponent },
@@ -53,7 +57,7 @@ const appRoutes: Routes = [{
     RegistrationComponent, HeaderComponent,
     NavbarComponent, FooterComponent,
     CountryComponent, StateComponent,
-    DeparmentComponent],
+    DeparmentComponent, AddEmployeeComponent, DepratmentSelectListComponent],
   bootstrap: [AppComponent],
   providers: [
     CanActiveGuardForRoute,
