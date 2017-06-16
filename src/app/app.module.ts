@@ -24,7 +24,7 @@ import { CanActiveGuardForRoute } from './guards/canActiveGuard';
 import { UserService } from './shared/service/user.service';
 import { MaterialModule } from '@angular/material';
 import { MdListModule } from '@angular2-material/list';
-
+import {SharedDirectiveModule} from './plugin-component/shared-directive-module';
 import 'hammerjs';
 import {
   LocationStrategy,
@@ -51,7 +51,7 @@ const appRoutes: Routes = [{
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,SharedDirectiveModule
   ],
   declarations: [AppComponent, LoginComponent,
     RegistrationComponent, HeaderComponent,

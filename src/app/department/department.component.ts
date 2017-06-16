@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../shared/service/department.service';
 import { Department } from '../shared/model/department';
+import {SharedDirectiveModule} from '../plugin-component/shared-directive-module'
 
 @Component({
     selector: 'dept-selector',
