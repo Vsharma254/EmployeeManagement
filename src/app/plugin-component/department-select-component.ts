@@ -6,13 +6,14 @@ import { Department } from '../shared/model/department';
     selector: 'dept-selector-list',
     template: `<md-select id="departmentSelect" name="departmentList" (change)="Selectonchange()" placeholder="Select Department" [(ngModel)]="selectedDepartment">
                         <md-option *ngFor="let dept of departmentList" [value]="dept">{{dept.deptName}}</md-option>
-                    </md-select>`,
+                    </md-select>
+                    <ng-content> </ng-content>`,                
     providers: [DepartmentService]
 })
 export class DepratmentSelectListComponent implements OnInit {
     public departmentList: Department[];
     public selectedDepartment: Department;
-    @Output()  myEvent :EventEmitter<Department> = new EventEmitter<Department>();
+    @Output() myEvent: EventEmitter<Department> = new EventEmitter<Department>();
     constructor(private deptSer: DepartmentService)
     { }
     ngOnInit() {
@@ -20,8 +21,7 @@ export class DepratmentSelectListComponent implements OnInit {
             this.departmentList = resp;
         });
     }
-    Selectonchange() {        
-        alert(this.selectedDepartment);
+    Selectonchange() {
         this.myEvent.emit(this.selectedDepartment)
     }
 }

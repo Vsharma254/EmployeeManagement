@@ -7,7 +7,7 @@
                     <md-input-container>
                         <input mdInput placeholder="Department name" [(ngModel)]="dept.deptName">
                     </md-input-container>
-                    <span set-IsActive> this is for testing onlly </span>
+                    <span set-IsActive [oneInput]="inFromComDone"> this is for testing onlly </span>
                 </td>
             </tr>
         </table>
@@ -18,7 +18,7 @@
 </md-card>
 
 <md-card class="demo-card demo-basic">
-    <md-toolbar color="accent">Department List</md-toolbar>
+    <md-toolbar color="accent">Employee List</md-toolbar>
     <md-card-content>
         <table class="mdl-data-table mdl-js-data-table full101">
             <thead>

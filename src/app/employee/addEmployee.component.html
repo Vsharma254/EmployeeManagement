@@ -1,58 +1,123 @@
 <md-card class="demo-card demo-basic">
     <md-toolbar color="accent">Add New Employee</md-toolbar>
     <md-card-content class="mdl-shadow--6dp pad5">
-        <table style="width: 100%" cellspacing="0">
-            <tr style="margin:10px;">
-                <td>
-                    <md-input-container>
-                        <input mdInput placeholder="Employee name" [(ngModel)]="employee.employeeName">
-                    </md-input-container>
-
-                </td>
-                <td>
-                    <md-input-container>
-                        <input mdInput placeholder="Employee Email" [(ngModel)]="employee.employeeEmail">
-                    </md-input-container>
-                </td>
-                <td>
-                    <md-input-container>
-                        <input mdInput placeholder="Employee Mobile" [(ngModel)]="employee.employeeNumber">
-                    </md-input-container>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <!--<md-select id="departmentSelect" name="departmentList" placeholder="Select Department" [(ngModel)]="selectedDepartment">
-                        <md-option *ngFor="let dept of departmentList" [value]="dept">{{dept.deptName}}</md-option>
-                    </md-select>-->
-                    <dept-selector-list (myEvent)="localEvent($event)"> </dept-selector-list>
-                </td>
-            </tr>
-        </table>
-        <div class="mdl-card__actions mdl-card--border">
-            <button id="addnewcountryButton" (click)="addNewEmployee()" md-raised-button color="accent">  Add New Department </button>
-        </div>
-    </md-card-content>
-</md-card>
-
-<!--<md-card class="demo-card demo-basic">
-    <md-toolbar color="accent">Department List</md-toolbar>
-    <md-card-content>
-        <table class="mdl-data-table mdl-js-data-table full101">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Name</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of _deptList">
-                    <td class="mdl-data-table__cell--non-numeric">{{item.deptName}}</td>
-                    <td class="pad5">
-                        <button md-raised-button color="accent">Delete Department </button>
+        <form [formGroup]="fg" (ngSubmit)="addNewEmployee(fg.value)" novalidate>
+            <table style="width: 100%; padding:10px" cellspacing="0">
+                <tr style="margin:10px;">
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Employee name" formControlName="empName">
+                        </md-input-container>
+                        <div class="ValidationError" *ngIf="fg.get('empName').hasError('required') && fg.get('empName').touched">
+                            Employee Name is required
+                        </div>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Employee Email" formControlName="empEmail">
+                        </md-input-container>
+                        <div class="ValidationError" *ngIf="fg.get('empEmail').hasError('required') && fg.get('empEmail').touched">
+                            Employee Email is required
+                        </div>
+                        <div class="ValidationError" *ngIf="fg.get('empEmail').hasError('incorrectMailFormat') && fg.get('empEmail').touched">
+                            Employee Email is required
+                        </div>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Employee Mobile" formControlName="empMobileNumber">
+                        </md-input-container>
+                        <div class="ValidationError" *ngIf="fg.get('empMobileNumber').hasError('required') && fg.get('empMobileNumber').touched">
+                            Employee Contact Number is required
+                        </div>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <td>
+                        <dept-selector-list (myEvent)="localEvent($event)">
+                            This is from ng-Content </dept-selector-list>
+                        {{fg.value.empDepartmentID}}
+                        <div class="ValidationError" *ngIf="fg.get('empDepartmentID').hasError('required') && fg.get('empDepartmentID').touched">
+                            Employee Department is required
+                        </div>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Employee Joining Date" formControlName="empJoiningDate">
+                        </md-input-container>
+                        <div class="ValidationError" *ngIf="fg.get('empJoiningDate').hasError('required') && fg.get('empJoiningDate').touched">
+                            Employee Joining is required
+                        </div>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Employee Details" formControlName="empDetails">
+                        </md-input-container>
+                        <div class="ValidationError" *ngIf="fg.get('empDetails').hasError('required') && fg.get('empDetails').touched">
+                            Employee Details is required
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Employee Designation" formControlName="empDesignation">
+                        </md-input-container>
+                        <div class="ValidationError" *ngIf="fg.get('empDesignation').hasError('required') && fg.get('empDesignation').touched">
+                            Employee Desingation is required
+                        </div>
+                    </td>
+                    <td>
+                        <md-radio-group formControlName="empActiveStatus">
+                            <md-radio-button value="true" class="md-primary">Active</md-radio-button>
+                            <md-radio-button value="false"> Inactive </md-radio-button>
+                        </md-radio-group>
+                        <div class="ValidationError" *ngIf="fg.get('empName').hasError('required') && fg.get('empName').touched">
+                            Employee Status is required
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="mdl-card__actions mdl-card--border">
+
+                <button type="submit" id="addnewcountryButton" [disabled]="fg.invalid" md-raised-button color="accent">  Add New Department </button>
+            </div>
+        </form>
+        <input type="text" [(ngModel)]="testAPi" /> {{testAPi}}
     </md-card-content>
-</md-card>-->
+</md-card>
+<div>
+    <md-card class="demo-card demo-basic">
+        <md-toolbar color="accent">Department List</md-toolbar>
+        <md-card-content>
+            <table class="mdl-data-table mdl-js-data-table full101">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric">Mobile</th>
+                        <th class="mdl-data-table__cell--non-numeric">Email</th>
+                        <th class="mdl-data-table__cell--non-numeric">Created Date</th>
+                        <th class="mdl-data-table__cell--non-numeric">Details</th>
+                        <th class="mdl-data-table__cell--non-numeric">Designation</th>
+                        <th class="mdl-data-table__cell--non-numeric">Joining Date</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item; of employeeList | empFilter">
+                        <td class="mdl-data-table__cell--non-numeric">{{item.empName}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{item.empMobileNumber}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{item.empEmail}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{item.empCreateDate}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{item.empDetails}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{item.empDesignation}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{item.empJoiningDate}}</td>
+                        <td class="pad5">
+                            <button md-raised-button color="accent">Delete </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-card-content>
+    </md-card>
+</div>

@@ -1,8 +1,15 @@
 import { Department } from './department'
 export interface Employee {
-    employeeName: string;
-    employeeEmail:string;
-    employeeNumber:string;
-    EmployeeState:number;
-    employeeDepartment: Department;
+    empID: Number,
+    empName: string;
+    empDepartmentID: Number,
+    empMobileNumber: Number,
+    empEmail: String,
+    empActiveStatus: Boolean,
+    empDeleteStatus: Boolean,
+    empCreateDate: Date,
+    empUpdateDate: Date,
+    empJoiningDate: Date,
+    empDetails: String,
+    empDesignation: String
 }
