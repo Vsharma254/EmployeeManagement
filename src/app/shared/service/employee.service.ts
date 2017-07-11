@@ -3,12 +3,15 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/Operator/map';
 import 'rxjs/add/Operator/share';
+import 'rxjs/add/Operator/mergeMap';
+
 import { Employee } from '../model/employee';
 import { baseURl } from './serviceConfig';
+import { DepartmentService } from './department.service';
 @Injectable()
 export class EmployeeService {
     private _baseUrl: string;
-    constructor(private _http: Http) {
+    constructor(private _http: Http, private dept: DepartmentService) {
         this._baseUrl = baseURl;
     }
     public getEmplyees(): Observable<Employee[]> {
@@ -16,6 +19,10 @@ export class EmployeeService {
          res.json()).catch(res => {
               return Observable.throw(res.json());
            });
+    }
+    public GetMergeMap()
+    {
+        return this._http.get(this._baseUrl + 'employees').mergeMap(emp => this._http.get('http://localhost:3000/departments'));
     }
     public addEmployee(_emp: Employee) {
         

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Inject, Input, Pipe } from '@angular/core';
-import { Employee } from '../shared/model/employee';
+import { Employee, eClass } from '../shared/model/employee';
 import { Department } from '../shared/model/department';
 import { EmployeeService } from '../shared/service/employee.service';
 import { DepartmentService } from '../shared/service/department.service';
@@ -20,6 +20,7 @@ export class AddEmployeeComponent implements OnInit {
     public selectedDepartment: Department;
     public fg: FormGroup;
     public testAPi:string;
+    public mergmapobje :any;
     constructor(private deptSer: DepartmentService,
         private employeeSer: EmployeeService,
         private _fr: FormBuilder) {
@@ -92,8 +93,14 @@ export class AddEmployeeComponent implements OnInit {
             // empJoiningDate: new FormControl(),
             // empDetails: new FormControl(),
             // empDesignation: new FormControl(),
-        })
+        });
 
+        this.employeeSer.GetMergeMap().subscribe(resp =>
+        {
+            this.mergmapobje =resp;
 
+        });
+        let cob =new eClass();
+        alert(cob.tset);
     }
 }

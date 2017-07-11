@@ -1,0 +1,32 @@
+<div class="mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--scroll">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Employee Management</span>
+            <div class="mdl-layout-spacer"></div>
+            <div>
+                <button md-raised-button color="warn">
+    Logout
+    </button>
+            </div>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Employee Mgmnt</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" routerLink="/myapp/" routerLinkActive="active">Home</a>
+            <a class="mdl-navigation__link" routerLink="/myapp/country" routerLinkActive="active">Country</a>
+            <a class="mdl-navigation__link" routerLink="/myapp/state" routerLinkActive="active">State</a>
+            <a class="mdl-navigation__link" routerLink="/myapp/department" routerLinkActive="active">Department</a>
+            <a class="mdl-navigation__link" routerLink="/myapp/addemployee" routerLinkActive="active">Employee</a>
+            <!--<a class="mdl-navigation__link" routerLink="/myapp/login" routerLinkActive="active">Login</a>-->
+            <a class="mdl-navigation__link" routerLink="/myapp/register" routerLinkActive="active">Register</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+    <!--<router-outlet name="footer">
+    </router-outlet>-->
+</div>
