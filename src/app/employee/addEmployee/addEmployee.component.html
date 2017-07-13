@@ -1,0 +1,89 @@
+<article class="content forms-page">
+    <div class="title-block">
+        <h3 class="title"> Add Employee </h3>
+        <p class="title-description"> Add new employee here </p>
+    </div>
+    <section class="section">
+        <div class="row sameheight-container">
+            <form [formGroup]="fg" (ngSubmit)="addNewEmployee(fg.value)" novalidate>
+                <div class="col-md-6">
+                    <div class="card card-block sameheight-item">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Emplyee Name</label>
+                            <input type="email" class="form-control" formControlName="empName" id="exampleInputEmail1" placeholder="Enter name">
+                            <div class="ValidationError" *ngIf="fg.get('empName').hasError('required') && fg.get('empName').touched">
+                                Employee Name is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="empEmail" placeholder="Password">
+                            <div class="ValidationError" *ngIf="fg.get('empEmail').hasError('required') && fg.get('empEmail').touched">
+                                Employee Email is required
+                            </div>
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="exampleInputEmail1">Contact Number</label>
+                            <input type="email" class="form-control boxed" id="exampleInputEmail1" placeholder="Enter email" formControlName="empMobileNumber">
+
+                            <span class="has-error" *ngIf="fg.get('empMobileNumber').hasError('required') && fg.get('empMobileNumber').touched"> Employee Contact Number is required</span>
+                        </div>
+                        <div class="form-group">
+                            <dept-selector-list (myEvent)="localEvent($event)">
+                            </dept-selector-list>
+                            {{fg.value.empDepartmentID}}
+                            <div class="ValidationError" *ngIf="fg.get('empDepartmentID').hasError('required') && fg.get('empDepartmentID').touched">
+                                Employee Department is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-block sameheight-item">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Joining Date</label>
+                            <input type="email" class="form-control" formControlName="empJoiningDate" id="exampleInputEmail1" placeholder="Enter email" />
+                            <div class="ValidationError" *ngIf="fg.get('empJoiningDate').hasError('required') && fg.get('empJoiningDate').touched">
+                                Employee Joining is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Employee Details</label>
+                            <input type="password" class="form-control" formControlName="empDetails" id="exampleInputPassword1" placeholder="Password">
+                            <div class="ValidationError" *ngIf="fg.get('empDetails').hasError('required') && fg.get('empDetails').touched">
+                                Employee Details is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Designation</label>
+                            <input type="email" class="form-control" formControlName="empDesignation" id="exampleInputEmail1" placeholder="Enter email" />
+                            <div class="ValidationError" *ngIf="fg.get('empDesignation').hasError('required') && fg.get('empDesignation').touched">
+                                Employee Desingation is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Active Status</label>
+                            <div>
+                                <label>
+			                    <input class="radio" value="true" formControlName="empActiveStatus" name="empActiveStatus" type="radio">
+			                    <span>Active</span>
+			                </label>
+                                <label>
+			                    <input class="radio" value="false" formControlName="empActiveStatus" name="empActiveStatus" type="radio">
+			                    <span>Inactive</span>
+			                </label>
+                            </div>
+                            <div class="ValidationError" *ngIf="fg.get('empName').hasError('required') && fg.get('empName').touched">
+                                Employee Status is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="addnewcountryButton" [disabled]="fg.invalid" class="btn btn-primary">  Add New Department </button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</article>

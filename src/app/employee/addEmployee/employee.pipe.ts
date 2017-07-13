@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
-import { Employee } from '../shared/model/employee';
+import { Employee } from '../../shared/model/employee';
 @Pipe({
     name: 'empFilter'
 })

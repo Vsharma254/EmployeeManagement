@@ -1,10 +1,11 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var path = require('path');
 module.exports = {
 
     entry: {
-        'app': './src/main.ts',
+        'app': path.join(__dirname, 'src/main.ts'),
         'polyfills': [
             'core-js/es6',
             'core-js/es7/reflect',
@@ -12,9 +13,11 @@ module.exports = {
         ]
     },
     output: {
-        path: './dist',
+        path: path.join(__dirname, 'dist'),
         filename: '[name].[hash].js'
     },
+    context: path.join(__dirname, 'src'),
+
     devtool: 'source-map',
     module: {
         loaders: [
@@ -32,12 +35,15 @@ module.exports = {
             name: 'polyfills'
         }),
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: path.join(__dirname, 'src/index.html')
         }),
         new webpack.DefinePlugin({
             app: {
                 environment: JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
             }
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: 'static' }
+        ])
     ]
 };

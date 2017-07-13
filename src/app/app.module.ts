@@ -9,8 +9,12 @@ import { CountryComponent } from './country/country.component';
 import { StateComponent } from './state/state.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { AddEmployeeComponent } from './employee/addEmployee.component';
-import { AddEmployeeModule } from './employee/employee.module';
+import { AddEmployeeComponent } from './employee/addEmployee/addEmployee.component';
+import { EmployeeListComponent } from './employee/employeelist/employeelist.component';
+
+import { AddEmployeeModule } from './employee/addEmployee/employee.module';
+import { EmployeeListModule } from './employee/employeelist/employeelist.module';
+
 import { DepratmentSelectListComponent } from './plugin-component/department-select-component';
 import { HeaderComponent } from './layout/header.component';
 import { FooterComponent } from './layout/footer.component';
@@ -21,7 +25,7 @@ import { CanActiveGuardForRoute } from './guards/canActiveGuard';
 import { UserService } from './shared/service/user.service';
 import { SharedDirectiveModule } from './plugin-component/shared-directive-module';
 import { MaterialModule } from '@angular/material';
-import { EmployeePipe } from './employee/employee.pipe';
+import { EmployeePipe } from './employee/addEmployee/employee.pipe';
 import 'hammerjs';
 
 import {
@@ -30,13 +34,11 @@ import {
 } from '@angular/common';
 const appRoutes: Routes = [{
   path: 'myapp', component: HomeComponent, children: [
-    // { path: '', component: HeaderComponent, outlet: 'header' },
-    // { path: '', component: FooterComponent, outlet: 'footer' },
-    // { path: '', component: NavbarComponent, outlet: 'navbar' },
     { path: 'country', component: CountryComponent, canActivate: [CanActiveGuardForRoute] },
     { path: 'state', component: StateComponent, canActivate: [CanActiveGuardForRoute] },
     { path: 'department', component: DeparmentComponent, canActivate: [CanActiveGuardForRoute] }
    ,{ path: 'addemployee', component: AddEmployeeComponent, canActivate: [CanActiveGuardForRoute] }
+   //,{ path: 'employeelist', component: EmployeeListComponent, canActivate: [CanActiveGuardForRoute] }
   ]
 }, { path: 'login', component: LoginComponent },
 { path: 'register', component: RegistrationComponent },
@@ -54,7 +56,8 @@ const appRoutes: Routes = [{
     HttpModule,
     SharedDirectiveModule,
     // AddEmployeeModule,
-    MaterialModule
+    MaterialModule,
+    EmployeeListModule
   ],
   declarations: [
     AppComponent,
@@ -69,7 +72,8 @@ const appRoutes: Routes = [{
     AddEmployeeComponent,
     DeparmentComponent,
     DepratmentSelectListComponent,
-    EmployeePipe
+    EmployeePipe,
+    EmployeeListComponent
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, Inject, Input, Pipe } from '@angular/core';
-import { Employee, eClass } from '../shared/model/employee';
-import { Department } from '../shared/model/department';
-import { EmployeeService } from '../shared/service/employee.service';
-import { DepartmentService } from '../shared/service/department.service';
-import { DepratmentSelectListComponent } from '../plugin-component/department-select-component';
+import { Employee, eClass } from '../../shared/model/employee';
+import { Department } from '../../shared/model/department';
+import { EmployeeService } from '../../shared/service/employee.service';
+import { DepartmentService } from '../../shared/service/department.service';
+import { DepratmentSelectListComponent } from '../../plugin-component/department-select-component';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { EmployeePipe } from './employee.pipe';
 @Component(
@@ -11,7 +11,7 @@ import { EmployeePipe } from './employee.pipe';
         selector: 'add-employee',
         templateUrl: './addEmployee.component.html',
         providers: [DepartmentService, EmployeeService],
-        styleUrls: ["../department/department.component.css"]
+        styleUrls: ["../../department/department.component.css"]
     })
 export class AddEmployeeComponent implements OnInit {
     public employee: Employee;
@@ -95,12 +95,12 @@ export class AddEmployeeComponent implements OnInit {
             // empDesignation: new FormControl(),
         });
 
-        this.employeeSer.GetMergeMap().subscribe(resp =>
-        {
-            this.mergmapobje =resp;
+        // this.employeeSer.GetMergeMap().subscribe(resp =>
+        // {
+        //     this.mergmapobje =resp;
 
-        });
-        let cob =new eClass();
-        alert(cob.tset);
+        // });
+        // let cob =new eClass();
+        // alert(cob.tset);
     }
 }

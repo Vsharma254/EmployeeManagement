@@ -4,10 +4,8 @@ import { Department } from '../shared/model/department';
 
 @Component({
     selector: 'dept-selector-list',
-    template: `<md-select id="departmentSelect" name="departmentList" (change)="Selectonchange()" placeholder="Select Department" [(ngModel)]="selectedDepartment">
-                        <md-option *ngFor="let dept of departmentList" [value]="dept">{{dept.deptName}}</md-option>
-                    </md-select>
-                    <ng-content> </ng-content>`,                
+    template: `<div class="form-group">  <label for="exampleInputEmail1">Department</label> <select class="form-control" id="departmentSelect" (change)="Selectonchange()" placeholder="Select Department" [(ngModel)]="selectedDepartment">
+							<option *ngFor="let dept of departmentList" [value]="dept">{{dept.deptName}}</option></select> </div>`,                
     providers: [DepartmentService]
 })
 export class DepratmentSelectListComponent implements OnInit {
@@ -17,6 +15,7 @@ export class DepratmentSelectListComponent implements OnInit {
     constructor(private deptSer: DepartmentService)
     { }
     ngOnInit() {
+        this.selectedDepartment = {deptID:0, deptName: '--Select Depratment--' }
         this.deptSer.getDepartments().subscribe((resp) => {
             this.departmentList = resp;
         });
