@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/Operator/map';
 import 'rxjs/add/Operator/share';
 import 'rxjs/add/Operator/mergeMap';
+import 'rxjs/add/Operator/catch';
+
 
 import { Employee } from '../model/employee';
 import { baseURl } from './serviceConfig';

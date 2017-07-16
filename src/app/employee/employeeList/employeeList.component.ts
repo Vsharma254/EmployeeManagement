@@ -17,9 +17,9 @@ export class EmployeeListComponent implements OnInit {
     public employeeList: Employee[];
     constructor(
         private employeeSer: EmployeeService,
-       ) {
+    ) {
         this.initAll();
-        
+
     }
     private initAll() {
         this.employee = {
@@ -37,8 +37,13 @@ export class EmployeeListComponent implements OnInit {
             empDesignation: ''
         };
     }
+    convertDateFormat(ldate: Date): String {
+        if(ldate !=null)
+        return new Date(ldate).toDateString();
+    }
     loadEmployeeList() {
         this.employeeSer.getEmplyees().subscribe(res => {
+
             this.employeeList = res;
         });
     }

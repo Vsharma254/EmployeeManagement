@@ -16,15 +16,11 @@ import { AddEmployeeModule } from './employee/addEmployee/employee.module';
 import { EmployeeListModule } from './employee/employeelist/employeelist.module';
 
 import { DepratmentSelectListComponent } from './plugin-component/department-select-component';
-import { HeaderComponent } from './layout/header.component';
-import { FooterComponent } from './layout/footer.component';
-import { NavbarComponent } from './layout/navbar.component';
 import { DeparmentComponent } from './department/department.component';
 import { HomeComponent } from './home/home.component';
 import { CanActiveGuardForRoute } from './guards/canActiveGuard';
 import { UserService } from './shared/service/user.service';
 import { SharedDirectiveModule } from './plugin-component/shared-directive-module';
-import { MaterialModule } from '@angular/material';
 import { EmployeePipe } from './employee/addEmployee/employee.pipe';
 import 'hammerjs';
 
@@ -56,7 +52,7 @@ const appRoutes: Routes = [{
     HttpModule,
     SharedDirectiveModule,
     // AddEmployeeModule,
-    MaterialModule,
+    
     EmployeeListModule
   ],
   declarations: [
@@ -64,9 +60,6 @@ const appRoutes: Routes = [{
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    HeaderComponent,
-    NavbarComponent,
-    FooterComponent,
     CountryComponent,
     StateComponent,
     AddEmployeeComponent,

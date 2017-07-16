@@ -31,12 +31,12 @@
                                             <td class="mdl-data-table__cell--non-numeric">{{item.empName}}</td>
                                             <td class="mdl-data-table__cell--non-numeric">{{item.empMobileNumber}}</td>
                                             <td class="mdl-data-table__cell--non-numeric">{{item.empEmail}}</td>
-                                            <td class="mdl-data-table__cell--non-numeric">{{item.empCreateDate}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{convertDateFormat(item.empCreateDate)}}</td>
                                             <td class="mdl-data-table__cell--non-numeric">{{item.empDetails}}</td>
                                             <td class="mdl-data-table__cell--non-numeric">{{item.empDesignation}}</td>
-                                            <td class="mdl-data-table__cell--non-numeric">{{item.empJoiningDate}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{convertDateFormat(item.empJoiningDate)}}</td>
                                             <td class="pad5">
-                                                <button md-raised-button color="accent">Delete </button>
+                                                <button class="btn btn-oval btn-danger" color="accent">Delete </button>
                                             </td>
                                         </tr>
                                     </tbody>

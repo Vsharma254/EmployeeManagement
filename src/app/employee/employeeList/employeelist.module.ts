@@ -4,7 +4,6 @@ import { EmployeeListComponent } from './employeeList.component';
 import { CanActiveGuardForRoute } from '../../guards/canActiveGuard';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import { HomeComponent } from '../../home/home.component';
 const _routes: Routes = [
@@ -20,8 +19,7 @@ const _routes: Routes = [
     {
         imports: [BrowserModule, RouterModule.forChild(_routes),
         FormsModule,
-         ReactiveFormsModule, 
-        MaterialModule],
+         ReactiveFormsModule],
         declarations: [EmployeeListComponent],
         exports: [RouterModule] 
     })
