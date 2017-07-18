@@ -20,15 +20,15 @@ module.exports = {
 
     devtool: 'source-map',
     module: {
-        loaders: [
-            { test: /\.component.ts$/, loader: 'ts!angular2-template' },
-            { test: /\.ts$/, exclude: /\.component.ts$/, loader: 'ts' },
-            { test: /\.html$/, loader: 'raw' },
-            { test: /\.css$/, loader: 'raw' }
+        rules: [
+            { test: /\.component.ts$/, loader: 'ts-loader!angular2-template-loader' },
+            { test: /\.ts$/, exclude: /\.component.ts$/, loader: 'ts-loader' },
+            { test: /\.html$/, loader: 'raw-loader' },
+            { test: /\.css$/, loader: 'raw-loader' }
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.ts', '.html', '.css']
+        extensions: ['*', '.js', '.ts', '.html', '.css']
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
@@ -40,7 +40,8 @@ module.exports = {
         new webpack.DefinePlugin({
             app: {
                 environment: JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
-            }
+            },
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new CopyWebpackPlugin([
             { from: 'static' }
