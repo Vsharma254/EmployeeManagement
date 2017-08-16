@@ -3,7 +3,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 module.exports = {
-
     entry: {
         'app': path.join(__dirname, 'src/main.ts'),
         'polyfills': [

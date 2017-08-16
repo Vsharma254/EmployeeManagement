@@ -94,6 +94,7 @@ export class AddEmployeeComponent implements OnInit {
             // empDetails: new FormControl(),
             // empDesignation: new FormControl(),
         });
+    
 
         // this.employeeSer.GetMergeMap().subscribe(resp =>
         // {
