@@ -1,27 +1,41 @@
-<md-card class="demo-card demo-basic">
-    <md-toolbar color="primary">Login</md-toolbar>
-    <md-card-content>
-        <div style="margin-left: 45%; margin-top: 10px;">
-            <table style="width: 100%" cellspacing="0">
-                <tr>
-                    <td>
-                        <md-input-container>
-                            <input mdInput placeholder="User Name" [(ngModel)]="user.userName">
-                        </md-input-container>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <md-input-container>
-                            <input type="password" mdInput placeholder="Password" [(ngModel)]="user.password">
-                        </md-input-container>
-                    </td>
-                </tr>
-            </table>
-
-            <br/>
-            <br />
-            <button id="userLoginButton" (click)="loginUser()" md-raised-button color="accent">  Login </button>
+<div class="auth">
+    <div class="auth-container">
+        <div class="card">
+            <header class="auth-header">
+                <h1 class="auth-title">
+                    <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> ModularAdmin </h1>
+            </header>
+            <div class="auth-content">
+                <p class="text-xs-center">LOGIN TO CONTINUE</p>
+                <div id="login-form" action="/index.html" method="GET" novalidate="">
+                    <div class="form-group"> <label for="username">Username</label>
+                        <input type="email" class="form-control underlined" [(ngModel)]="user.userName" name="username" id="username" placeholder="Your email address" required> </div>
+                    <div class="form-group"> <label for="password">Password</label>
+                        <input type="password" class="form-control underlined" [(ngModel)]="user.password" name="password" id="password" placeholder="Your password" required> </div>
+                    <div class="form-group"> <label for="remember">
+            <input class="checkbox" id="remember" type="checkbox"> 
+            <span>Remember me</span>
+          </label> <a href="reset.html" class="forgot-btn pull-right">Forgot password?</a> </div>
+                    <div class="form-group">
+                        <button type="submit" (click)="loginUser()" class="btn btn-block btn-primary">Login</button> </div>
+                    <div class="form-group">
+                        <p class="text-muted text-xs-center">Do not have an account? <a href="signup.html">Sign Up!</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </md-card-content>
-</md-card>
+        <div class="text-xs-center">
+            <a href="index.html" class="btn btn-secondary rounded btn-sm">
+                <i class="fa fa-arrow-left"></i> Back to dashboard
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Reference block for JS -->
+<div class="ref" id="ref">
+    <div class="color-primary"></div>
+    <div class="chart">
+        <div class="color-primary"></div>
+        <div class="color-secondary"></div>
+    </div>
+</div>

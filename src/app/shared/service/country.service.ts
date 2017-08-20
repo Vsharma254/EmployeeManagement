@@ -17,14 +17,13 @@ export class CountryService {
     }
     addCountry(_country: Country) {
         console.log(_country);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this._http.post(this.url + "country", _country, headers).map(res => res.json());
+        
+        return this._http.post(this.url + "country", _country).map(res => res.json());
     }
     deleteCountry(_country: Country) {
         console.log(_country);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this._http.post(this.url + "deletecountry", _country, headers).map(res => res.json());
+        
+        
+        return this._http.post(this.url + "deletecountry", _country).map(res => res.json());
     }
 }

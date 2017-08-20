@@ -1,0 +1,51 @@
+<article class="content responsive-tables-page">
+    <div class="title-block">
+        <h1 class="title"> Employee List </h1>
+        <p class="title-description"> When blocks aren't enough </p>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title-block">
+                            <h3 class="title"> All Active and Inactive employees </h3>
+                        </div>
+                        <section class="example">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="mdl-data-table__cell--non-numeric">Name</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Mobile</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Email</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Created Date</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Details</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Designation</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Joining Date</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item; of employeeList">
+                                            <td class="mdl-data-table__cell--non-numeric">{{item.empName}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{item.empMobileNumber}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{item.empEmail}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{convertDateFormat(item.empCreateDate)}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{item.empDetails}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{item.empDesignation}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric">{{convertDateFormat(item.empJoiningDate)}}</td>
+                                            <td class="pad5">
+                                                <button class="btn btn-oval btn-danger" color="accent">Delete </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>

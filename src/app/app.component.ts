@@ -2,7 +2,9 @@ import { Component, } from '@angular/core';
 import { Router, NavigationStart, Event } from '@angular/router';
 import { User } from './shared/model/User';
 import { SerializationHelper } from './shared/SerializationHelper';
-
+// import '../static/js/vendor.js';
+// import '../static/js/app.js';
+// import '../static/css/vendor.css';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',

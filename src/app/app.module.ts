@@ -1,41 +1,40 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { Http, HttpModule } from '@angular/http';
-import { MdCardModule } from '@angular2-material/card';
-import { MdButtonModule } from '@angular2-material/button';
-import { MdIconModule } from '@angular2-material/icon';
-import { MdInputModule } from '@angular2-material/input';
-import { MdToolbarModule } from '@angular2-material/toolbar';
-import { MdIconRegistry } from '@angular2-material/icon';
 import { CountryComponent } from './country/country.component';
 import { StateComponent } from './state/state.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { HeaderComponent } from './layout/header.component';
-import { FooterComponent } from './layout/footer.component';
-import { NavbarComponent } from './layout/navbar.component';
+import { AddEmployeeComponent } from './employee/addEmployee/addEmployee.component';
+import { EmployeeListComponent } from './employee/employeelist/employeelist.component';
+
+import { AddEmployeeModule } from './employee/addEmployee/employee.module';
+import { EmployeeListModule } from './employee/employeelist/employeelist.module';
+
+import { DepratmentSelectListComponent } from './plugin-component/department-select-component';
 import { DeparmentComponent } from './department/department.component';
+import { HomeComponent } from './home/home.component';
 import { CanActiveGuardForRoute } from './guards/canActiveGuard';
 import { UserService } from './shared/service/user.service';
-import { MaterialModule } from '@angular/material';
-import { MdListModule } from '@angular2-material/list';
+import { SharedDirectiveModule } from './plugin-component/shared-directive-module';
+import { EmployeePipe } from './employee/addEmployee/employee.pipe';
 import 'hammerjs';
+
 import {
   LocationStrategy,
   HashLocationStrategy
 } from '@angular/common';
 const appRoutes: Routes = [{
-  path: 'myapp', children: [
-    { path: '', component: HeaderComponent, outlet: 'header' },
-    { path: '', component: FooterComponent, outlet: 'footer' },
-    { path: '', component: NavbarComponent, outlet: 'navbar' },
-
+  path: 'myapp', component: HomeComponent, children: [
     { path: 'country', component: CountryComponent, canActivate: [CanActiveGuardForRoute] },
-    { path: 'state', component: StateComponent, canActivate: [CanActiveGuardForRoute]  },
+    { path: 'state', component: StateComponent, canActivate: [CanActiveGuardForRoute] },
     { path: 'department', component: DeparmentComponent, canActivate: [CanActiveGuardForRoute] }
+   ,{ path: 'addemployee', component: AddEmployeeComponent, canActivate: [CanActiveGuardForRoute] }
+   //,{ path: 'employeelist', component: EmployeeListComponent, canActivate: [CanActiveGuardForRoute] }
   ]
 }, { path: 'login', component: LoginComponent },
 { path: 'register', component: RegistrationComponent },
@@ -44,21 +43,35 @@ const appRoutes: Routes = [{
 @NgModule({
   imports: [
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes, {
+      useHash: true,
+      preloadingStrategy: PreloadAllModules
+    }),
     BrowserModule,
     HttpModule,
-    MaterialModule
+    SharedDirectiveModule,
+    // AddEmployeeModule,
+    
+    EmployeeListModule
   ],
-  declarations: [AppComponent, LoginComponent,
-    RegistrationComponent, HeaderComponent,
-    NavbarComponent, FooterComponent,
-    CountryComponent, StateComponent,
-    DeparmentComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    RegistrationComponent,
+    CountryComponent,
+    StateComponent,
+    AddEmployeeComponent,
+    DeparmentComponent,
+    DepratmentSelectListComponent,
+    EmployeePipe,
+    EmployeeListComponent
+  ],
   bootstrap: [AppComponent],
   providers: [
     CanActiveGuardForRoute,
     UserService,
-    MdIconRegistry,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
