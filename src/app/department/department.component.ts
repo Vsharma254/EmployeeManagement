@@ -28,13 +28,12 @@ export class DeparmentComponent implements OnInit, DoCheck {
         if (changes) {
             changes.forEachChangedItem(x => {
                 this.inFromComDone = x.currentValue;
-            }
-            );
+            });
         }
     }
     private getDeprtmentList() {
         this._DepartmentService.getDepartments().subscribe(resp => {
-            this._deptList = resp;
+            this._deptList = resp;           
         });
     }
     public clrearControls() {

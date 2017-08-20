@@ -29,8 +29,8 @@
                             <span class="has-error" *ngIf="fg.get('empMobileNumber').hasError('required') && fg.get('empMobileNumber').touched"> Employee Contact Number is required</span>
                         </div>
                         <div class="form-group has-error">
+                            <h2> {{fg.get('empDepartmentID').value}}</h2>
                             <dept-selector-list (myEvent)="localEvent($event)">
-
                             </dept-selector-list>
                             <span class="has-error" *ngIf="fg.get('empDepartmentID').hasError('required') && fg.get('empDepartmentID').touched">
                                 Employee Department is required
