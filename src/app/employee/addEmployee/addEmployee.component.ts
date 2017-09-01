@@ -27,10 +27,9 @@ export class AddEmployeeComponent implements OnInit {
         this.initAll();
         
     }
-    public localEvent(anyKoi: any) {
+    public localEvent(anyKoi: Department) {
         this.selectedDepartment = anyKoi;
-        this.fg.value.empDepartmentID = anyKoi.value.deptID;
-        alert(anyKoi );
+        this.fg.value.empDepartmentID = this.selectedDepartment.deptID;
     }
     private initAll() {
         this.employee = {

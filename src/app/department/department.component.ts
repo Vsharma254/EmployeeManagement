@@ -1,26 +1,26 @@
-import { Component, OnInit, ViewChild, DoCheck, OnChanges, KeyValueDiffers,
-     ChangeDetectionStrategy, } from '@angular/core';
+import { Component, OnInit, ViewChild, DoCheck, OnChanges, KeyValueDiffers, ChangeDetectionStrategy, } from '@angular/core';
 import { DepartmentService } from '../shared/service/department.service';
 import { Department } from '../shared/model/department';
 import { SharedDirectiveModule } from '../plugin-component/shared-directive-module';
 import { SetActiveInactiveDirective } from '../plugin-component/setActiveInactive-directive';
 import { Observable } from 'rxjs/Observable';
-
+import { DepartmentReducer } from '../reducers/department.reducer';
+import { Store } from '@ngrx/store';
 @Component({
     selector: 'dept-selector',
     templateUrl: 'department.component.html',
     styleUrls: ["./department.component.css"],
-    providers: [DepartmentService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    providers: [DepartmentService]
 })
 
 export class DeparmentComponent implements OnInit, DoCheck {
     public dept: Department = { deptID: 0, deptName: '' };
+public obsDeptList:Observable<any>;
     public _deptList: Department[] = [];
     public inFromComDone: string;
     @ViewChild(SetActiveInactiveDirective) dirt: SetActiveInactiveDirective;
     differ: any;
-    constructor(private _DepartmentService: DepartmentService, private differs: KeyValueDiffers) {
+    constructor(private _DepartmentService: DepartmentService, private differs: KeyValueDiffers, private store:Store<any>) {
         this.differ = differs.find({}).create(null);
     }
     ngDoCheck() {
@@ -32,8 +32,14 @@ export class DeparmentComponent implements OnInit, DoCheck {
         }
     }
     private getDeprtmentList() {
+        
         this._DepartmentService.getDepartments().subscribe(resp => {
-            this._deptList = resp;           
+            this.store.dispatch({type:'GET_DEPARTMENTS', payload:resp});
+            this.obsDeptList = this.store.select('DepartmentReducer');
+            this.obsDeptList.subscribe(r =>
+                {
+                    this._deptList =r.payload;
+                });
         });
     }
     public clrearControls() {

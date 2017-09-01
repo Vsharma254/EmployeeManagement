@@ -20,8 +20,16 @@ import { DeparmentComponent } from './department/department.component';
 import { HomeComponent } from './home/home.component';
 import { CanActiveGuardForRoute } from './guards/canActiveGuard';
 import { UserService } from './shared/service/user.service';
+import { DepartmentService } from './shared/service/department.service';
 import { SharedDirectiveModule } from './plugin-component/shared-directive-module';
 import { EmployeePipe } from './employee/addEmployee/employee.pipe';
+
+//Reducers
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { DepartmentEffect } from './effects/dept.effect';
+import { DepartmentReducer } from './reducers/department.reducer';
 import 'hammerjs';
 
 import {
@@ -33,8 +41,8 @@ const appRoutes: Routes = [{
     { path: 'country', component: CountryComponent, canActivate: [CanActiveGuardForRoute] },
     { path: 'state', component: StateComponent, canActivate: [CanActiveGuardForRoute] },
     { path: 'department', component: DeparmentComponent, canActivate: [CanActiveGuardForRoute] }
-   ,{ path: 'addemployee', component: AddEmployeeComponent, canActivate: [CanActiveGuardForRoute] }
-   //,{ path: 'employeelist', component: EmployeeListComponent, canActivate: [CanActiveGuardForRoute] }
+    , { path: 'addemployee', component: AddEmployeeComponent, canActivate: [CanActiveGuardForRoute] }
+    //,{ path: 'employeelist', component: EmployeeListComponent, canActivate: [CanActiveGuardForRoute] }
   ]
 }, { path: 'login', component: LoginComponent },
 { path: 'register', component: RegistrationComponent },
@@ -50,9 +58,14 @@ const appRoutes: Routes = [{
     }),
     BrowserModule,
     HttpModule,
+    StoreModule.forRoot({
+      DepartmentReducer
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 10 }),
     SharedDirectiveModule,
+    EffectsModule.forRoot([DepartmentEffect]),
     // AddEmployeeModule,
-    
+
     EmployeeListModule
   ],
   declarations: [
@@ -75,7 +88,7 @@ const appRoutes: Routes = [{
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    }
+    },DepartmentService
   ]
 })
 export class AppModule { }

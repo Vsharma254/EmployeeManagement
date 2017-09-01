@@ -7,16 +7,15 @@ import { Department } from '../shared/model/department';
     template: `
                  <label for="exampleInputEmail1">Department</label> 
                  <select class="form-control" id="departmentSelect" (change)="Selectonchange()" placeholder="Select Department" [(ngModel)]="selectedDepartment">
-                            <option *ngFor="let dept of departmentList" [value]="dept">{{dept.deptName}}</option>
+                            <option *ngFor="let dept of departmentList" [ngValue]="dept">{{dept.deptName}}</option>
                             </select> 
                            `,                
-    providers: [DepartmentService],
-    encapsulation: ViewEncapsulation.Native
+    providers: [DepartmentService]    
 })
 export class DepratmentSelectListComponent implements OnInit {
     public departmentList: Department[];
     public selectedDepartment: Department;
-    @Output() myEvent: EventEmitter<any> = new EventEmitter();
+    @Output() myEvent = new EventEmitter<Department>();
     constructor(private deptSer: DepartmentService)
     { }
     ngOnInit() {
@@ -26,8 +25,7 @@ export class DepratmentSelectListComponent implements OnInit {
         });
     }
     Selectonchange() {
-        this.myEvent.emit(this.selectedDepartment)
-        
+        this.myEvent.emit(this.selectedDepartment);
     }
 }
 
