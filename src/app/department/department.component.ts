@@ -15,12 +15,13 @@ import { Store } from '@ngrx/store';
 
 export class DeparmentComponent implements OnInit, DoCheck {
     public dept: Department = { deptID: 0, deptName: '' };
-public obsDeptList:Observable<any>;
+    public obsDeptList: Observable<any>;
     public _deptList: Department[] = [];
     public inFromComDone: string;
     @ViewChild(SetActiveInactiveDirective) dirt: SetActiveInactiveDirective;
     differ: any;
-    constructor(private _DepartmentService: DepartmentService, private differs: KeyValueDiffers, private store:Store<any>) {
+    public p1: string = 'coming from compo';
+    constructor(private _DepartmentService: DepartmentService, private differs: KeyValueDiffers, private store: Store<any>) {
         this.differ = differs.find({}).create(null);
     }
     ngDoCheck() {
@@ -32,14 +33,13 @@ public obsDeptList:Observable<any>;
         }
     }
     private getDeprtmentList() {
-        
+
         this._DepartmentService.getDepartments().subscribe(resp => {
-            this.store.dispatch({type:'GET_DEPARTMENTS', payload:resp});
+            this.store.dispatch({ type: 'GET_DEPARTMENTS', payload: resp });
             this.obsDeptList = this.store.select('DepartmentReducer');
-            this.obsDeptList.subscribe(r =>
-                {
-                    this._deptList =r.payload;
-                });
+            this.obsDeptList.subscribe(r => {
+                this._deptList = r.payload;
+            });
         });
     }
     public clrearControls() {
