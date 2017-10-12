@@ -1,11 +1,11 @@
-//Error.stackTraceLimit = Infinity;
+Error.stackTraceLimit = Infinity;
 
-require('core-js/es6');
-require('core-js/es7/reflect');
-require('zone.js/dist/zone');
+require('node-modules/core-js/es6');
+require('node-modules/core-js/es7/reflect');
+require('node-modules/zone.js/dist/zone');
 
-require('core-js/client/shim');
-require('reflect-metadata');
+require('node-modules/core-js/client/shim');
+require('node-modules/reflect-metadata');
 
 require('ts-helpers');
 

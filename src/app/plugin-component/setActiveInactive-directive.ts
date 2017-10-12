@@ -1,6 +1,7 @@
 import { Directive, HostListener, HostBinding, ElementRef, Renderer, OnInit, Input } from "@angular/core";
 @Directive({
-    selector: "[set-IsActive]"
+    selector: "[set-IsActive]",
+
 })
 export class SetActiveInactiveDirective implements OnInit {
     constructor(public ele: ElementRef, public renderer: Renderer) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, DoCheck, OnChanges, KeyValueDiffers, ChangeDetectionStrategy, } from '@angular/core';
+import { Component, OnInit, ViewChild, DoCheck, OnChanges, KeyValueDiffers, ChangeDetectionStrategy } from '@angular/core';
 import { DepartmentService } from '../shared/service/department.service';
 import { Department } from '../shared/model/department';
 import { SharedDirectiveModule } from '../plugin-component/shared-directive-module';
