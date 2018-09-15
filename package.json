@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack --progress",
     "build:prod": "cross-env APP_ENVIRONMENT=production webpack -p --progress",
-    "serve": "webpack-dev-server --inline --progress"
+    "serve": "webpack-dev-server --inline --progress"    
   },
   "dependencies": {
     "@angular/common": "^4.2.6",

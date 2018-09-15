@@ -28,7 +28,9 @@ import {
   LocationStrategy,
   HashLocationStrategy
 } from '@angular/common';
-const appRoutes: Routes = [{
+const appRoutes: Routes = [
+  { path: '', component: LoginComponent },
+  {
   path: 'myapp', component: HomeComponent, children: [
     { path: 'country', component: CountryComponent, canActivate: [CanActiveGuardForRoute] },
     { path: 'state', component: StateComponent, canActivate: [CanActiveGuardForRoute] },

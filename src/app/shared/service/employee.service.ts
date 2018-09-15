@@ -24,7 +24,7 @@ export class EmployeeService {
     }
     public GetMergeMap()
     {
-        return this._http.get(this._baseUrl + 'employees').mergeMap(emp => this._http.get('http://localhost:3000/departments'));
+        return this._http.get(this._baseUrl + 'employees').mergeMap(emp => this._http.get('http://localhost:3000/api/departments'));
     }
     public addEmployee(_emp: Employee) {
         
