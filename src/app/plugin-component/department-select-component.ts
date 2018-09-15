@@ -1,17 +1,22 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { DepartmentService } from '../shared/service/department.service';
 import { Department } from '../shared/model/department';
 
 @Component({
     selector: 'dept-selector-list',
-    template: `<div class="form-group">  <label for="exampleInputEmail1">Department</label> <select class="form-control" id="departmentSelect" (change)="Selectonchange()" placeholder="Select Department" [(ngModel)]="selectedDepartment">
-							<option *ngFor="let dept of departmentList" [value]="dept">{{dept.deptName}}</option></select> </div>`,                
-    providers: [DepartmentService]
+    template: `
+                 <label for="exampleInputEmail1">Department</label> 
+                 <select class="form-control" id="departmentSelect" (change)="Selectonchange()" placeholder="Select Department" [(ngModel)]="selectedDepartment">
+                            <option *ngFor="let dept of departmentList" [value]="dept">{{dept.deptName}}</option>
+                            </select> 
+                           `,                
+    providers: [DepartmentService],
+    encapsulation: ViewEncapsulation.Native
 })
 export class DepratmentSelectListComponent implements OnInit {
     public departmentList: Department[];
     public selectedDepartment: Department;
-    @Output() myEvent: EventEmitter<Department> = new EventEmitter<Department>();
+    @Output() myEvent: EventEmitter<any> = new EventEmitter();
     constructor(private deptSer: DepartmentService)
     { }
     ngOnInit() {
@@ -22,6 +27,7 @@ export class DepratmentSelectListComponent implements OnInit {
     }
     Selectonchange() {
         this.myEvent.emit(this.selectedDepartment)
+        
     }
 }
 

@@ -36,7 +36,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of _deptList">
+                                        <tr *ngFor="let item; of  _deptList">
                                             <td class="mdl-data-table__cell--non-numeric">{{item.deptName}}</td>
                                             <td class="pad5">
                                                 <button md-raised-button color="accent">Delete Department </button>

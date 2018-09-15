@@ -27,9 +27,10 @@ export class AddEmployeeComponent implements OnInit {
         this.initAll();
         
     }
-    public localEvent(anyKoi: Department) {
+    public localEvent(anyKoi: any) {
         this.selectedDepartment = anyKoi;
-        this.fg.value.empDepartmentID = anyKoi.deptID;
+        this.fg.value.empDepartmentID = anyKoi.value.deptID;
+        alert(anyKoi );
     }
     private initAll() {
         this.employee = {
@@ -78,7 +79,7 @@ export class AddEmployeeComponent implements OnInit {
         this.fg = new FormGroup({
             empID: new FormControl(),
             empName: new FormControl('', Validators.required),
-            empDepartmentID: new FormControl(),
+            empDepartmentID: new FormControl('', Validators.required),
             empMobileNumber: new FormControl('', Validators.required),
             empEmail: new FormControl('', [Validators.required, this.emailValidate]),
             empActiveStatus: new FormControl('', Validators.required),
@@ -94,6 +95,8 @@ export class AddEmployeeComponent implements OnInit {
             // empDetails: new FormControl(),
             // empDesignation: new FormControl(),
         });
+        this.fg.value.empDepartmentID = 12;
+    
 
         // this.employeeSer.GetMergeMap().subscribe(resp =>
         // {

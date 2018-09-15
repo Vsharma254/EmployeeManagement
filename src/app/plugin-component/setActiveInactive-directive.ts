@@ -7,8 +7,7 @@ export class SetActiveInactiveDirective implements OnInit {
         this.test = "this is from directive!!";
     }
     public test: string;
-     @Input() oneInput: string;
-
+     @Input() oneInput: string;     
     @HostListener('mouseenter') cc() {
         this.renderer.setElementStyle(this.ele.nativeElement, "background-color", "red");
     }

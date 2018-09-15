@@ -1,14 +1,17 @@
-import { Component, OnInit, ViewChild, DoCheck, OnChanges, KeyValueDiffers } from '@angular/core';
+import { Component, OnInit, ViewChild, DoCheck, OnChanges, KeyValueDiffers,
+     ChangeDetectionStrategy, } from '@angular/core';
 import { DepartmentService } from '../shared/service/department.service';
 import { Department } from '../shared/model/department';
-import { SharedDirectiveModule } from '../plugin-component/shared-directive-module'
-import { SetActiveInactiveDirective } from '../plugin-component/setActiveInactive-directive'
+import { SharedDirectiveModule } from '../plugin-component/shared-directive-module';
+import { SetActiveInactiveDirective } from '../plugin-component/setActiveInactive-directive';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'dept-selector',
     templateUrl: 'department.component.html',
     styleUrls: ["./department.component.css"],
-    providers: [DepartmentService]
+    providers: [DepartmentService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DeparmentComponent implements OnInit, DoCheck {
@@ -25,13 +28,12 @@ export class DeparmentComponent implements OnInit, DoCheck {
         if (changes) {
             changes.forEachChangedItem(x => {
                 this.inFromComDone = x.currentValue;
-            }
-            );
+            });
         }
     }
     private getDeprtmentList() {
         this._DepartmentService.getDepartments().subscribe(resp => {
-            this._deptList = resp;
+            this._deptList = resp;           
         });
     }
     public clrearControls() {
